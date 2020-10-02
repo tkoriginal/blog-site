@@ -2,15 +2,17 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const axios = require('axios')
 
+const servicePorts = [4000, 4001, 4002, 4003]
+
 const app = express()
 app.use(bodyParser.json())
 
 app.post('/events', (req, res) => {
   const event = req.body
 
-  axios.post('http://localhost:4000/events', event)
-  axios.post('http://localhost:4001/events', event)
-  axios.post('http://localhost:4002/events', event)
+  servicePorts.map(servicePort => {
+    axios.post(`http://localhost:${servicePort}/events`, event)
+  })
 
   res.send({ status: 'OK' })
 })
