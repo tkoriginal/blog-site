@@ -6,12 +6,12 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      test: posts
+      app: posts
   template:
     metadata:
       labels:
-        test: posts
+        app: posts
     spec:
       containers:
         - name: posts
-          image: tkoriginal/posts:0.0.1
+          image: tkoriginal/posts
